@@ -1,4 +1,13 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-
-createApp(App).mount('#app')
+import { createApp } from 'vue';
+import App from './App.vue';
+import { createPinia } from 'pinia';
+import BaseButton from './components/UI/BaseButton.vue';
+import BasePopup from './components/UI/BasePopup.vue';
+import BaseInput from './components/UI/BaseInput.vue';
+const app = createApp(App);
+const pinia = createPinia();
+app.component('base-button', BaseButton);
+app.component('base-popup', BasePopup);
+app.component('base-input', BaseInput);
+app.use(pinia);
+app.mount('#app');
