@@ -29,4 +29,9 @@ input.invalid {
  transition: 150ms;
  border: 1px solid #dc2626;
 }
+@media screen and (max-width: 375px) {
+ input {
+  font-size: 14px;
+ }
+}
 </style>

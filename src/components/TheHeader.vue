@@ -44,4 +44,12 @@ header {
   height: 10%;
  }
 }
+@media screen and (max-width: 430px) {
+ header {
+  height: 7%;
+ }
+ .btn {
+  width: 24%;
+ }
+}
 </style>

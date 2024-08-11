@@ -1,5 +1,5 @@
 <template>
- <div class="chat-container">
+ <div class="chat-container" :class="{ empty: !store.getSelectedChannel }">
   <div class="chat" v-if="store.getSelectedChannel">
    <div class="chat-head" @click="setMembersOpenMobile">
     <p class="name">{{ store.getSelectedChannel.name }}</p>
@@ -7,7 +7,7 @@
      {{ Object.keys(store.getSelectedChannel.members).length }} members
     </p>
    </div>
-   <ul class="massages">
+   <ul class="messages">
     <li
      v-for="message in store.getMessages"
      :key="message.id"
@@ -53,6 +53,7 @@
     />
    </div>
   </div>
+  <p v-else>No channel selected</p>
  </div>
 </template>
 
@@ -97,7 +98,7 @@ export default {
  },
  //Automatic scroll to the bottom of the message list
  updated() {
-  const list = document.querySelector('.massages');
+  const list = document.querySelector('.messages');
   if (list) {
    list.scrollTo(0, list.scrollHeight);
   }
@@ -127,6 +128,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.chat-container.empty {
+ justify-content: center;
+ align-items: center;
+}
 .members-list {
  overflow-y: auto;
  height: 93%;
@@ -146,10 +151,14 @@ export default {
  font-weight: 500;
  border-radius: 5px;
  font-size: 16px;
+ grid-gap: 10px;
  background-color: #e2e8f0;
  padding: 15px;
  transition: 150ms;
  cursor: pointer;
+ p {
+  color: #047857;
+ }
 }
 .members-list li:hover {
  transition: 150ms;
@@ -212,7 +221,7 @@ li.self {
  justify-content: left;
 }
 
-.massages {
+.messages {
  padding: 15px;
  overflow-y: scroll;
  height: 84%;
@@ -238,7 +247,7 @@ li.self {
 }
 
 @media screen and (max-width: 1430px) {
- .massages {
+ .messages {
   height: 82%;
  }
  .members-list {
@@ -258,7 +267,7 @@ li.self {
  .chat-head {
   height: 13%;
  }
- .massages {
+ .messages {
   height: 75%;
  }
  .input {
@@ -293,6 +302,29 @@ li.self {
   .message-text {
    font-size: 14px;
   }
+ }
+}
+@media screen and (max-width: 430px) {
+ .messages {
+  height: 85%;
+ }
+ .chat-head {
+  height: 7%;
+ }
+ .input {
+  height: 8%;
+  grid-template-columns: 70% 1fr;
+ }
+}
+@media screen and (max-width: 375px) {
+ .chat-head {
+  height: 9%;
+ }
+ .messages {
+  height: 83%;
+ }
+ .input {
+  grid-template-columns: 64% 1fr;
  }
 }
 </style>

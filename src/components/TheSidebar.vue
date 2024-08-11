@@ -236,4 +236,35 @@ li:hover {
   left: -100%;
  }
 }
+@media screen and (max-width: 430px) {
+ .sidebar.active {
+  grid-template-rows: 6% 11% 83%;
+ }
+ .sidebar {
+  grid-template-rows: 5% 89% 6%;
+ }
+ .sidebar.active {
+  grid-template-rows: 7% 14% 79%;
+ }
+ .search-list {
+  grid-template-rows: 94% 1fr;
+ }
+ .selected-list {
+  grid-template-rows: 5% 89% 6%;
+ }
+}
+@media screen and (max-width: 375px) {
+ .selected-list {
+  grid-template-rows: 7% 87% 6%;
+  input {
+   font-size: 14px;
+  }
+ }
+ .sidebar.active {
+  grid-template-rows: 7% 14% 79%;
+ }
+ li {
+  font-size: 12px;
+ }
+}
 </style>

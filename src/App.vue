@@ -31,10 +31,29 @@ export default {
  },
  computed: {
   gridColumns() {
-   if (this.sideBarIsOpen) {
-    return '38% 62%';
+   const gridSetup = {
+    opened: null,
+    closed: null,
+   };
+   switch (true) {
+    case this.windowWidth <= 375:
+     gridSetup.opened = '49% 51%';
+     gridSetup.closed = '10% 90%';
+     break;
+    case this.windowWidth <= 430:
+     gridSetup.opened = '43% 57%';
+     gridSetup.closed = '10% 90%';
+     break;
+
+    default: {
+     gridSetup.opened = '38% 62%';
+     gridSetup.closed = '7% 93%';
+    }
    }
-   return '7% 93%';
+   if (this.sideBarIsOpen) {
+    return gridSetup.opened;
+   }
+   return gridSetup.closed;
   },
  },
 
@@ -78,6 +97,11 @@ main {
   height: 90%;
   grid-template-columns: v-bind(gridColumns);
   transition: 150ms;
+ }
+}
+@media screen and (max-width: 430px) {
+ main {
+  height: 93%;
  }
 }
 </style>

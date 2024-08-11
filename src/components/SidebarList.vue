@@ -30,7 +30,7 @@
     </button>
    </li>
   </ul>
-  <p class="not-found" v-if="searchResult.length === 0">Nothing to display</p>
+  <p class="not-found" v-if="searchResult.length === 0">Nothing found</p>
  </div>
 </template>
 
@@ -153,6 +153,11 @@ li:hover {
 @media screen and (max-width: 640px) {
  li {
   padding: 10px;
+ }
+}
+@media screen and (max-width: 375px) {
+ li {
+  font-size: 12px;
  }
 }
 </style>
